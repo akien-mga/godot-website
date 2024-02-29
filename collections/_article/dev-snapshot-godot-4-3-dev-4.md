@@ -1,25 +1,25 @@
 ---
 title: "Dev snapshot: Godot 4.3 dev 4"
-excerpt: ""
+excerpt: "TODO"
 categories: ["pre-release"]
-author: Rémi Verschelde
+author: Clay John
 image: /storage/blog/covers/dev-snapshot-godot-4-3-dev-4.webp
-image_caption_title: ""
-image_caption_description: ""
-date: 2024-02-29 12:00:00
+image_caption_title: "Parking Garage Rally Circuit"
+image_caption_description: "A game by Walaber"
+date: 2024-02-29 18:00:00
 ---
 
-4.3 dev 4 is jam-packed with changes after 3 weeks of further development. This is an unexpectedly large  dev release containing many bug fixes, stability improvements, and new features. 
+4.3 dev 4 is jam-packed with changes after 3 weeks of further development. This is an unexpectedly large dev release containing many bug fixes, stability improvements, and new features.
 
 This release includes many notable changes including:
 
-- Many Tilemap enhancements setting the stage for exposing tilemap layers as nodes
 - AnimationMixer feature parity and other animation goodies.
 - .NET code quality and usability improvements.
 - Allow opening scenes with missing scene dependency.
-- UFBX as a built-in alternative to FBX2GLTF.
+- UFBX as a built-in alternative to FBX2glTF.
 - Huge improvement to pixel stability for pixel art games.
 - Many rendering features and enhancements.
+- Redesigned graph editor for Visual Shaders.
 - And more!
 
 Keep in mind that while we try to make sure each dev snapshot is stable enough for general testing, this is by definition a pre-release piece of software. Be sure to make frequent backups, or use a version control system such as Git, to preserve your projects in a case of corruption or data loss.
@@ -28,35 +28,26 @@ Keep in mind that while we try to make sure each dev snapshot is stable enough f
 
 -----
 
-TODO: **
+*The illustration picture is from* [**Parking Garage Rally Circuit**](https://store.steampowered.com/app/2737300/Parking_Garage_Rally_Circuit/), *a delightfully retro arcade rally racing that looks straight out of 1998! It is developed by [Walaber](https://twitter.com/walaber) of JellyCar fame, and this upcoming opus is developed using Godot 4.2. Wishlist the game on [Steam](https://store.steampowered.com/app/2737300/Parking_Garage_Rally_Circuit/), and follow the developer on [Twitter](https://twitter.com/walaber) and [Discord](https://discord.com/invite/Ws2MTXyh).*
 
 ## Highlights
 
-TODO: This snapshot comes loaded with new features and important fixes, after three weeks of further development.
+This snapshot comes loaded with new features and important fixes, after three weeks of further development.
 
 As a reminder, this section only covers changes made since the previous [4.3 dev 3 snapshot](/article/dev-snapshot-godot-4-3-dev-3/). For a more comprehensive overview of what's new in Godot 4.3 compared to 4.2, you'll have to wait for the first beta release, or refer to our [interactive changelog](https://godotengine.github.io/godot-interactive-changelog/#4.3).
-
-### TileMap layers moved to nodes
-
-Moving TileMap layers to individual nodes
-https://github.com/godotengine/godot-proposals/issues/7122
-https://github.com/godotengine/godot/pull/87115
-https://github.com/godotengine/godot/pull/87379
-
-Bug fix threading https://github.com/godotengine/godot/pull/87478
 
 ### AnimationMixer feature parity and other animation goodies
 
 AnimationMixer continues to receive several fixes and enhancements after being introduced in 4.2:
 
-- [GH-86629](https://github.com/godotengine/godot/pull/86629) 
+- [GH-86629](https://github.com/godotengine/godot/pull/86629)
 
 - [GH-86661](https://github.com/godotengine/godot/pull/86661) introduces several fixes to how audio is handled by AnimationPlayers.
 
 
 https://github.com/godotengine/godot/pull/86715  ***Seems to require some details on using the new API
 
-[GH-87250](https://github.com/godotengine/godot/pull/87250) adds support for selecting, copying, pasting, and duplicating keyframes within the AnimationPlayer. 
+[GH-87250](https://github.com/godotengine/godot/pull/87250) adds support for selecting, copying, pasting, and duplicating keyframes within the AnimationPlayer.
 
 
 ### .NET code quality and usability improvements
@@ -70,11 +61,13 @@ https://github.com/godotengine/godot/pull/87952
 
 ### Allow opening scenes with missing scene dependency
 
-A common complaint among users is that they get locked out of editing a scene because it contained an instance of a different scene that no longer exists (from being renamed or deleted). Users learned to dread the well-known "Scene invalid/corrupt" error that resulted from this. [GH-86781](https://github.com/godotengine/godot/pull/86781) aims to improve the situation by allowing you to open, edit, and fix scenes that have been corrupted due to a missing dependency. This should make the process of refactoring your projects within Godot feel quite a bit safer. 
+A common complaint among users is that they get locked out of editing a scene because it contained an instance of a different scene that no longer exists (from being renamed or deleted). Users learned to dread the well-known "Scene invalid/corrupt" error that resulted from this. [GH-86781](https://github.com/godotengine/godot/pull/86781) aims to improve the situation by allowing you to open, edit, and fix scenes that have been corrupted due to a missing dependency. This should make the process of refactoring your projects within Godot feel quite a bit safer.
 
-### Add UFBX for importing FBX files without FBX2GLTF
+Another bugfix on the GDScript side may also help solve situations where using `preload()` with cyclic dependencies leads to scenes being flagged as invalid ([GH-85501](https://github.com/godotengine/godot/pull/85501)).
 
-This monumental effort incorporates the popular UFBX library into Godot to allow for seamlessly importing FBX files ([GH-82554](https://github.com/godotengine/godot/pull/82554)). Previously users would have to download the FBX2GLTF tool separately and Godot would invoke it to convert FBX files to GLTF files in order to import them. UFBX allows us to avoid this process and import FBX files directly. This is a huge change and the FBX file format is notoriously difficult to work with, so please test this carefully and report any bugs you find.
+### Add UFBX for importing FBX files without FBX2glTF
+
+This monumental effort incorporates the popular UFBX library into Godot to allow for seamlessly importing FBX files ([GH-82554](https://github.com/godotengine/godot/pull/82554)). Previously users would have to download the FBX2glTF tool separately and Godot would invoke it to convert FBX files to GLTF files in order to import them. UFBX allows us to avoid this process and import FBX files directly. This is a huge change and the FBX file format is notoriously difficult to work with, so please test this carefully and report any bugs you find.
 
 ### Huge improvement to pixel stability for pixel art games
 
@@ -90,7 +83,7 @@ A number of notable rendering changes have been merged recently:
 
 - A new CompositorEffects API has been added which lets you register callback functions that will be run in between rendering passes allowing you to insert rendering commands in the middle of Godot's built in rendering pipeline ([GH-80214](https://github.com/godotengine/godot/pull/80214)).
 
-- An option to use depth-based fog instead of the current exponential fog has been added ([GH-84792](https://github.com/godotengine/godot/pull/84792)). This closely aligns with the fog API from Godot 3.x. 
+- An option to use depth-based fog instead of the current exponential fog has been added ([GH-84792](https://github.com/godotengine/godot/pull/84792)). This closely aligns with the fog API from Godot 3.x.
 
 - Support for Glow has been added to the compatibility backend ([GH-87360](https://github.com/godotengine/godot/pull/87360)).
 
@@ -100,14 +93,19 @@ A number of notable rendering changes have been merged recently:
 
 In addition to new features and enhancements, contributors worked hard to improve Godot stability on older devices ([GH-87352](https://github.com/godotengine/godot/pull/87352), [GH-88573](https://github.com/godotengine/godot/pull/88573)).
 
+### Redesigned graph editor for Visual Shaders
+
+TODO https://github.com/godotengine/godot/pull/85017
 
 ### And more!
 
-- Allowing registering GDExtension as "runtime" classes [GH-82554](https://github.com/godotengine/godot/pull/82554).
-- GDScript: Reintroduce binary tokenization on export [GH-87634](https://github.com/godotengine/godot/pull/87634).
-- Add XR Face Tracking support [GH-88312](https://github.com/godotengine/godot/pull/88312).
-- Add XR body tracking support [GH-88798](https://github.com/godotengine/godot/pull/88798).
-- WebXR: Add support for hand tracking [GH-88411](https://github.com/godotengine/godot/pull/88411).
+- GDExtension: Allow registering GDExtension (and C++ module) classes as "runtime" classes ([GH-82554](https://github.com/godotengine/godot/pull/82554), [GH-88683](https://github.com/godotengine/godot/pull/88683)).
+- GDExtension: Allow GDExtensions to register virtual methods and call them on scripts ([GH-87758](https://github.com/godotengine/godot/pull/87758)).
+- GDScript: Reintroduce binary tokenization on export ([GH-87634](https://github.com/godotengine/godot/pull/87634)).
+- GUI: Rework the auto translation system ([GH-87530](https://github.com/godotengine/godot/pull/87530)).
+- Web: Add PWA option to ensure cross-origin isolation headers on web export ([GH-86089](https://github.com/godotengine/godot/pull/86089)).
+- WebXR: Add support for hand tracking ([GH-88411](https://github.com/godotengine/godot/pull/88411)).
+- XR: Add face and body tracking support ([GH-88312](https://github.com/godotengine/godot/pull/88312), [GH-88798](https://github.com/godotengine/godot/pull/88798)).
 
 ## Changelog
 
